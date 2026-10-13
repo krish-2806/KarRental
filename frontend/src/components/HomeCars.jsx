@@ -74,13 +74,38 @@ const HomeCars = () => {
   };
 
   const buildImageSrc = (image) => {
-    if (!image) return "";
-    if (Array.isArray(image)) image = image[0];
-    if (typeof image !== "string") return "";
+    if (!image) return fallbackImage;
+
+    if (Array.isArray(image)) {
+      image = image[0];
+    }
+
+    if (typeof image !== "string") {
+      return fallbackImage;
+    }
+
     const t = image.trim();
-    if (!t) return "";
-    if (t.startsWith("http://") || t.startsWith("https://")) return t;
-    if (t.startsWith("/")) return `${base}${t}`;
+
+    if (!t) {
+      return fallbackImage;
+    }
+
+    // Image URL already complete
+    if (t.startsWith("https://") || t.startsWith("http://")) {
+      return t;
+    }
+
+    // Image path already contains /uploads/
+    if (t.startsWith("/uploads/")) {
+      return `${base}${t}`;
+    }
+
+    // Image path starts with /
+    if (t.startsWith("/")) {
+      return `${base}${t}`;
+    }
+
+    // Filename only
     return `${base}/uploads/${t}`;
   };
 
@@ -305,7 +330,7 @@ const HomeCars = () => {
               key={`s-${idx}`}
               className={`${styles.card} border ${styles.borderGradients?.[
                 idx % (styles.borderGradients?.length || 1)
-                ] || ""
+              ] || ""
                 } opacity-50 animate-pulse`}
               style={{
                 clipPath:
@@ -459,8 +484,8 @@ const HomeCars = () => {
                   <button
                     onClick={() => handleBook(car)}
                     className={`${styles.bookButton} ${disabled
-                        ? "opacity-60 cursor-not-allowed"
-                        : "hover:shadow-md"
+                      ? "opacity-60 cursor-not-allowed"
+                      : "hover:shadow-md"
                       } bg-orange-500 text-white mx-6 mb-6`}
                     disabled={disabled}
                     aria-disabled={disabled}
