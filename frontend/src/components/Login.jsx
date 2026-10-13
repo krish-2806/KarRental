@@ -64,7 +64,7 @@ const Login = () => {
                     localStorage.removeItem('user');
 
                     // Admin application par redirect karo
-                    window.location.replace('http://localhost:5174/');
+                    window.location.replace('https://kar-rental-admin.vercel.app/');
                     return;
                 }
 
