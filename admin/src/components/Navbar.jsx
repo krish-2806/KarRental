@@ -11,7 +11,7 @@ import {
 import { FaSignOutAlt } from "react-icons/fa";
 import logo from "../assets/logocar.png";
 
-const LOGIN_URL = "http://localhost:5173/login";
+const LOGIN_URL = "https://kar-rental.vercel.app/login";
 
 const navLinks = [
     { path: "/", label: "Add Car", icon: PlusCircle },
@@ -81,7 +81,7 @@ const Navbar = () => {
         setIsOpen(false);
 
         // Frontend ke Login page par bhejo
-        window.location.replace('http://localhost:5173/login?logout=1');
+        window.location.replace('https://kar-rental.vercel.app/login?logout=1');
     };
 
 
