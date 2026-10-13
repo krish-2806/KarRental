@@ -56,7 +56,22 @@ const HomeCars = () => {
         params: { limit },
         signal: ctrl.signal,
       });
+      console.log(
+        "CAR IMAGE CHECK:",
+        res.data?.data?.map((car) => ({
+          name: `${car.make} ${car.model}`,
+          imageType: typeof car.image,
+          imageStart:
+            typeof car.image === "string"
+              ? car.image.substring(0, 80)
+              : JSON.stringify(car.image),
+          imageLength:
+            typeof car.image === "string" ? car.image.length : 0,
+        }))
+      );
+
       setCars(res.data?.data || []);
+
     } catch (err) {
       const isCanceled =
         err?.code === "ERR_CANCELED" ||
