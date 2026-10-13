@@ -45,7 +45,7 @@ app.use('/api/bookings', bookingRouter);
 app.use('/api/payments', paymentRouter);
 
 app.get('/api/ping', (req, res) => {
-    res.json({ ok: true, time: Date.now()})
+  res.json({ ok: true, time: Date.now() })
 });
 
 
@@ -54,6 +54,10 @@ app.get("/", (req, res) => {
   res.send("API WORKING");
 });
 
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
-});
+if (process.env.NODE_ENV !== "production") {
+  app.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`);
+  });
+}
+
+export default app;
