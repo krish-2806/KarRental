@@ -23,10 +23,10 @@ const sanitizeImageForBackend = (img) => {
     if (!img) return "";
     let s = String(img).trim();
     if (/^https?:\/\//i.test(s)) {
-        const idx = s.lastIndexOf("/uploads/");
+        const idx = s.lastIndexOf("uploads/");
         s =
             idx !== -1
-                ? s.slice(idx + "/uploads/".length)
+                ? s.slice(idx + "uploads/".length)
                 : s.slice(s.lastIndexOf("/") + 1);
     }
     return s.replace(/^\/+/, "").replace(/^uploads\//, "");
