@@ -1,6 +1,6 @@
 import { memo } from 'react';
 import { testimonialStyles as styles } from '../assets/dummyStyles';
-import testimonial from '../assets/testimonialData.js';
+import testimonial from '../assets/Testimonialdata.js';
 import { FaCar, FaQuoteLeft, FaStar } from 'react-icons/fa';
 import { GiSteeringWheel } from 'react-icons/gi';
 
