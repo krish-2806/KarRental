@@ -22,7 +22,7 @@ import axios from "axios";
 import carsData from "../assets/carsData";
 import { carDetailStyles } from "../assets/dummyStyles";
 
-const API_BASE = "https://kar-rental-backend-krish-9f40.vercel.app/";
+const API_BASE = "https://kar-rental-backend-krish-9f40.vercel.app";
 const api = axios.create({
     baseURL: API_BASE,
     headers: { Accept: "application/json" },
