@@ -74,40 +74,40 @@ const HomeCars = () => {
   };
 
   const buildImageSrc = (image) => {
-    if (!image) return fallbackImage;
+    if (!image) return "";
 
     if (Array.isArray(image)) {
       image = image[0];
     }
 
-    if (typeof image !== "string") {
-      return fallbackImage;
+    if (typeof image !== "string") return "";
+
+    const value = image.trim();
+
+    if (!value) return "";
+
+    // MongoDB Base64 image
+    if (value.startsWith("data:image/")) {
+      return value;
     }
 
-    const t = image.trim();
-
-    if (!t) {
-      return fallbackImage;
+    // Complete image URL
+    if (value.startsWith("https://") || value.startsWith("http://")) {
+      return value;
     }
 
-    // Image URL already complete
-    if (t.startsWith("https://") || t.startsWith("http://")) {
-      return t;
+    // Uploaded image path
+    if (value.startsWith("/uploads/")) {
+      return `${base}${value}`;
     }
 
-    // Image path already contains /uploads/
-    if (t.startsWith("/uploads/")) {
-      return `${base}${t}`;
+    if (value.startsWith("/")) {
+      return `${base}${value}`;
     }
 
-    // Image path starts with /
-    if (t.startsWith("/")) {
-      return `${base}${t}`;
-    }
-
-    // Filename only
-    return `${base}/uploads/${t}`;
+    return `${base}/uploads/${value}`;
   };
+
 
   const handleImageError = (e) => {
     const img = e?.target;
