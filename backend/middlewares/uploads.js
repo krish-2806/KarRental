@@ -2,7 +2,7 @@ import multer from "multer";
 import path from "path";
 import fs from "fs";
 
-const isVercel = process.env.VERCEL === "1";
+const isVercel = true;
 
 let storage;
 
