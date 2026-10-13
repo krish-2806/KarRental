@@ -31,8 +31,8 @@ const VerifyPaymentPage = () => {
             try{
                 setStatusMsg('Confirming payment with server...');
 
-                const API_BASE = 'https://kar-rental-backend.vercel.app';
-                const res = await axios.get(`${API_BASE}/api/payments/confirm`,{
+                const API_BASE = 'https://kar-rental-backend-krish-9f40.vercel.app/';
+                const res = await axios.get(`${API_BASE}api/payments/confirm`,{
                     params: { session_id },
                     headers: token ? {Authorization: `Bearer ${token}`} : {},
                     timeout: 15000

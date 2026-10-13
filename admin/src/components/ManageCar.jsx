@@ -4,7 +4,7 @@ import { FaCar, FaCog, FaEdit, FaFilter, FaGasPump, FaTachometerAlt, FaTrash, Fa
 import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 
-const BASE = "https://kar-rental-backend.vercel.app";
+const BASE = "https://kar-rental-backend-krish-9f40.vercel.app/";
 const api = axios.create({
     baseURL: BASE,
     headers: { Accept: 'application/json' }

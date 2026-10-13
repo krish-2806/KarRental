@@ -47,8 +47,8 @@ const Login = () => {
         e.preventDefault();
         setLoading(true);
         try {
-            const base = 'https://kar-rental-backend.vercel.app';
-            const url = `${base}/api/auth/login`;
+            const base = 'https://kar-rental-backend-krish-9f40.vercel.app/';
+            const url = `${base}api/auth/login`;
 
             const res = await axios.post(url, credentials, {
                 headers: { 'Content-Type': 'application/json' }

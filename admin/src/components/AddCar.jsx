@@ -3,7 +3,7 @@ import { AddCarPageStyles as s, toastStyles as t } from '../assets/dummyStyles';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 
-const baseURL = "https://kar-rental-backend.vercel.app";
+const baseURL = "https://kar-rental-backend-krish-9f40.vercel.app/";
 const api = axios.create({ baseURL });
 
 const AddCar = () => {

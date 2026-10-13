@@ -28,7 +28,7 @@ const Navbar = () => {
   const buttonRef = useRef(null);
   const abortRef = useRef(null);
 
-  const base = "https://kar-rental-backend.vercel.app";
+  const base = "https://kar-rental-backend-krish-9f40.vercel.app/";
   const api = axios.create({
     baseURL: base,
     headers: { Accept: "application/json" },

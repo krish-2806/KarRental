@@ -29,9 +29,9 @@ const Cars = () => {
   const [error, setError] = useState("");
 
   const abortControllerRef = useRef(null);
-  const base = "https://kar-rental-backend.vercel.app";
+  const base = "https://kar-rental-backend-krish-9f40.vercel.app/";
   const limit = 12;
-  const fallbackImage = `${base}/uploads/default-car.png`;
+  const fallbackImage = `${base}uploads/default-car.png`;
 
   useEffect(() => {
     fetchCars();

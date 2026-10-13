@@ -4,7 +4,7 @@ import axios from 'axios';
 import { FaCalendarAlt, FaCar, FaCheckCircle, FaChevronDown, FaCity, FaCreditCard, FaEdit, FaEnvelope, FaFilter, FaGasPump, FaGlobeAsia, FaMapMarkerAlt, FaMapPin, FaPhone, FaSearch, FaSync, FaTachometerAlt, FaUser, FaUserFriends } from 'react-icons/fa';
 import { Book } from 'lucide-react';
 
-const baseURL = "https://kar-rental-backend.vercel.app";
+const baseURL = "https://kar-rental-backend-krish-9f40.vercel.app/";
 const api = axios.create({ baseURL, headers: { Accept: 'application/json' } });
 
 // Utility functions

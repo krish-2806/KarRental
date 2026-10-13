@@ -24,7 +24,7 @@ import {
 } from "react-icons/fa";
 import { myBookingsStyles as s } from "../assets/dummyStyles";
 
-const API_BASE = "https://kar-rental-backend.vercel.app";
+const API_BASE = "https://kar-rental-backend-krish-9f40.vercel.app/";
 const TIMEOUT = 15000;
 
 // ---------- Helpers ----------
