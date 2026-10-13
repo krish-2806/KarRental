@@ -2,6 +2,9 @@ import Car from '../models/carModel.js';
 import path from 'path';
 import fs from 'fs';
 
+// Vercel has no writable disk, so the image is stored inside MongoDB as a data URL
+const toDataUrl = (file) =>
+    `data:${file.mimetype};base64,${file.buffer.toString('base64')}`;
 
 export const createCar = async (req, res, next) => {
     try {
@@ -17,7 +20,7 @@ export const createCar = async (req, res, next) => {
         }
         let imageFilename = req.body.image || '';
         if (req.file) {
-            imageFilename = req.file.filename;
+            imageFilename = toDataUrl(req.file);
         }
 
         //SAVING TO DB
@@ -108,20 +111,10 @@ export const updateCar = async (req, res, next) => {
         if (!car) return res.status(404).json({ message: 'Car not found' });
 
         if (req.file) {
-            if (car.image) {
-                const oldPath = path.join(process.cwd(), 'uploads', car.image);
-                fs.unlink(oldPath, (err) => {
-                    if (err) console.warn('Failed to delete old image:', err);
-                });
-            }
-            car.image = req.file.filename;
+            car.image = toDataUrl(req.file);
         }
         else if (req.body.image !== undefined) {
             if (!req.body.image && car.image) {
-                const oldPath = path.join(process.cwd(), 'uploads', car.image);
-                fs.unlink(oldPath, (err) => {
-                    if (err) console.warn('Failed to delete old image:', err);
-                });
                 car.image = '';
             }
         }
@@ -147,12 +140,6 @@ export const deleteCar = async (req, res, next) => {
         const car = await Car.findByIdAndDelete(req.params.id);
         if (!car) return res.status(404).json({ message: 'Car not found' });
 
-        if(car.image) {
-            const filePath = path.join(process.cwd(), 'uploads', car.image);
-            fs.unlink(filePath, (err) => {
-                if (err) console.warn('Failed to delete image:', err);
-            });
-        }
 
         res.json({ message: 'Car deleted successfully' });
     }
