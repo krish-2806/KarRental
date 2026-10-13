@@ -36,7 +36,7 @@ const SignUp = () => {
         setLoading(true);
 
         try {
-            const base = 'http://localhost:5000';
+            const base = 'https://kar-rental-backend.vercel.app';
             const url = `${base}/api/auth/register`;
 
             const res = await axios.post(url, formData, {
