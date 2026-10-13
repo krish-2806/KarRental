@@ -35,6 +35,12 @@ app.use(
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Serve uploaded car images
+app.use(
+  "/uploads",
+  express.static(path.join(process.cwd(), "uploads"))
+);
+
 // Database connection middleware
 app.use(async (req, res, next) => {
   try {
