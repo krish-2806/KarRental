@@ -6,7 +6,7 @@ import Car from '../models/carModel.js';
 
 dotenv.config();
 
-const CLIENT_URL = 'http://localhost:5173';
+const CLIENT_URL = "https://kar-rental.vercel.app";
 
 // GET RAZORPAY FROM .ENV
 const getRazorpay = () => {

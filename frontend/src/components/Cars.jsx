@@ -29,9 +29,9 @@ const Cars = () => {
   const [error, setError] = useState("");
 
   const abortControllerRef = useRef(null);
-  const base = "https://kar-rental-backend-krish-9f40.vercel.app/";
+  const base = "https://kar-rental-backend-krish-9f40.vercel.app";
   const limit = 12;
-  const fallbackImage = `${base}uploads/default-car.png`;
+  const fallbackImage = `${base}/uploads/default-car.png`;
 
   useEffect(() => {
     fetchCars();
@@ -51,7 +51,7 @@ const Cars = () => {
     if (abortControllerRef.current) {
       try {
         abortControllerRef.current.abort();
-      } catch (e) {}
+      } catch (e) { }
     }
     const controller = new AbortController();
     abortControllerRef.current = controller;
@@ -82,18 +82,43 @@ const Cars = () => {
   };
 
   const buildImageSrc = (image) => {
-    if (!image) return "";
-    if (Array.isArray(image)) image = image[0];
-    if (typeof image !== "string") return "";
+    if (!image) return fallbackImage;
 
-    const trimmed = image.trim();
-    if (trimmed.startsWith("http://") || trimmed.startsWith("https://")) {
-      return trimmed;
+    if (Array.isArray(image)) {
+      image = image[0];
     }
-    if (trimmed.startsWith("/")) {
-      return `${base}${trimmed}`;
+
+    if (typeof image !== "string") {
+      return fallbackImage;
     }
-    return `${base}uploads/${trimmed}`;
+
+    const value = image.trim();
+
+    if (!value) {
+      return fallbackImage;
+    }
+
+    // Base64 images
+    if (value.startsWith("data:image/")) {
+      return value;
+    }
+
+    // Full image URL
+    if (value.startsWith("https://") || value.startsWith("http://")) {
+      return value;
+    }
+
+    // Relative uploads path
+    if (value.startsWith("/uploads/")) {
+      return `${base}${value}`;
+    }
+
+    // Filename or another relative path
+    if (value.startsWith("/")) {
+      return `${base}${value}`;
+    }
+
+    return `${base}/uploads/${value}`;
   };
 
   const handleImageError = (e) => {
@@ -435,9 +460,8 @@ const Cars = () => {
 
                     <button
                       onClick={() => handleBook(car, id)}
-                      className={`${carPageStyles.bookButton} ${
-                        disabled ? "opacity-60 cursor-not-allowed" : ""
-                      }  bg-orange-500 text-white mx-6 mb-6`}
+                      className={`${carPageStyles.bookButton} ${disabled ? "opacity-60 cursor-not-allowed" : ""
+                        }  bg-orange-500 text-white mx-6 mb-6`}
                       aria-label={`Book ${carName}`}
                       title={
                         disabled
