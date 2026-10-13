@@ -16,7 +16,7 @@ const makeImageUrl = (img) => {
     const s = String(img).trim();
     return /^https?:\/\//i.test(s)
         ? s
-        : `${BASE}/uploads/${s.replace(/^\/+/, "").replace(/^uploads\//, "")}`;
+        : `${BASE}uploads/${s.replace(/^\/+/, "").replace(/^uploads\//, "")}`;
 };
 
 const sanitizeImageForBackend = (img) => {

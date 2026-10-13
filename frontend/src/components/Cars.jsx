@@ -57,7 +57,7 @@ const Cars = () => {
     abortControllerRef.current = controller;
 
     try {
-      const res = await axios.get(`${base}/api/cars`, {
+      const res = await axios.get(`${base}api/cars`, {
         params: { limit },
         signal: controller.signal,
         headers: { Accept: "application/json" },
@@ -93,7 +93,7 @@ const Cars = () => {
     if (trimmed.startsWith("/")) {
       return `${base}${trimmed}`;
     }
-    return `${base}/uploads/${trimmed}`;
+    return `${base}uploads/${trimmed}`;
   };
 
   const handleImageError = (e) => {
